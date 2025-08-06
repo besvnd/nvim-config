@@ -1,11 +1,17 @@
 return {
-  {
-    "stevearc/conform.nvim",
-    opts = function(_, opts)
-      opts.formatters_by_ft = vim.tbl_extend("force", opts.formatters_by_ft or {}, {
-        java = { "google-java-format" },
-      })
-      return opts
-    end,
-  },
+  "stevearc/conform.nvim",
+  opts = function(_, opts)
+    opts.formatters_by_ft = vim.tbl_extend("force", opts.formatters_by_ft or {}, {
+      java = { "palantir_java_format" },
+    })
+
+    opts.formatters = opts.formatters or {}
+    opts.formatters.palantir_java_format = {
+      command = vim.fn.expand("~/opt/bin/palantir-java-format"),
+      args = { "--replace", "$FILENAME" },
+      stdin = false,
+    }
+
+    return opts
+  end,
 }
