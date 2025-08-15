@@ -8,7 +8,7 @@ return {
     opts.formatters = opts.formatters or {}
     opts.formatters.palantir_java_format = {
       command = vim.fn.expand("~/opt/bin/palantir-java-format"),
-      args = { "--replace", "$FILENAME" },
+      args = { "--palantir", "--replace", "$FILENAME" },
       stdin = false,
     }
 
